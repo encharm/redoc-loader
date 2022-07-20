@@ -63,7 +63,7 @@ async function getPageHTML(
 }
 
 interface LoaderOptions {
-  overrides: Partial<OpenAPISpec>;
+  modifySpec?: (spec: OpenAPISpec) => OpenAPISpec;
   redocOptions: any;
 }
 
@@ -75,8 +75,8 @@ const loaderFunction: LoaderDefinitionFunction<LoaderOptions> = function(content
   validate({
     type: 'object',
     properties: {
-      overrides: {
-        type: 'object',
+      modifySpec: {
+        type: 'any',
       },
       redocOptions: {
         type: 'object',
@@ -94,8 +94,8 @@ const loaderFunction: LoaderDefinitionFunction<LoaderOptions> = function(content
 
   loadAndBundleSpec(resolve(this.resourcePath)).then(async spec => {
     try {
-      if (options.overrides) {
-        spec = merge({}, spec, options.overrides);
+      if (options.modifySpec) {
+        spec = options.modifySpec(spec);
       }
       const pageHTML = await getPageHTML(spec, { });
 

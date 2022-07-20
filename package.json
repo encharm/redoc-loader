@@ -1,10 +1,11 @@
 {
   "name": "redoc-loader",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Webpack Redoc (OpenAPI) loader that's an alternative to redoc-cli",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "tsc"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,6 @@
   "devDependencies": {
     "@redocly/openapi-core": "^1.0.0-beta.104",
     "@types/loader-utils": "^2.0.3",
-    "@types/lodash": "^4.14.182",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.25",
@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "loader-utils": "^3.2.0",
-    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "redoc": "^2.0.0-rc.72",
