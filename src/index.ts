@@ -76,7 +76,6 @@ const loaderFunction: LoaderDefinitionFunction<LoaderOptions> = function(content
     type: 'object',
     properties: {
       modifySpec: {
-        type: 'any',
       },
       redocOptions: {
         type: 'object',
