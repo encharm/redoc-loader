@@ -1,6 +1,6 @@
 {
   "name": "redoc-loader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Webpack Redoc (OpenAPI) loader that's an alternative to redoc-cli",
   "main": "dist/index.js",
   "scripts": {

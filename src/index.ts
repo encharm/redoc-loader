@@ -93,12 +93,16 @@ const loaderFunction: LoaderDefinitionFunction<LoaderOptions> = function(content
   this.addDependency(this.resourcePath);
 
   loadAndBundleSpec(resolve(this.resourcePath)).then(async spec => {
-    if (options.overrides) {
-      spec = merge({}, spec, options.overrides);
-    }
-    const pageHTML = await getPageHTML(spec, { });
+    try {
+      if (options.overrides) {
+        spec = merge({}, spec, options.overrides);
+      }
+      const pageHTML = await getPageHTML(spec, { });
 
-    callback(null, `module.exports = ${JSON.stringify(pageHTML)};`);
+      callback(null, `module.exports = ${JSON.stringify(pageHTML)};`);
+    } catch (err) {
+      callback(err);
+    }
   });
 }
 
