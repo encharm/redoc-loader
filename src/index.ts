@@ -72,7 +72,6 @@ const loaderFunction: LoaderDefinitionFunction<LoaderOptions> = function(content
 
   const options = this.getOptions();
 
-  console.log('Options', options);
   validate({
     type: 'object',
     properties: {
@@ -90,6 +89,8 @@ const loaderFunction: LoaderDefinitionFunction<LoaderOptions> = function(content
     name: 'OpenAPI loader',
     baseDataPath: 'options',
   });
+
+  this.addDependency(this.resourcePath);
 
   loadAndBundleSpec(resolve(this.resourcePath)).then(async spec => {
     if (options.overrides) {
