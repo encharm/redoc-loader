@@ -100,7 +100,7 @@ const loaderFunction: LoaderDefinitionFunction<LoaderOptions> = function(content
       const pageHTML = await getPageHTML(spec, { });
 
       callback(null, `module.exports = ${JSON.stringify(pageHTML)};`);
-    } catch (err) {
+    } catch (err: any) {
       callback(err);
     }
   });
