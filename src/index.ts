@@ -63,7 +63,7 @@ async function getPageHTML(
 }
 
 interface LoaderOptions {
-  modifySpec?: (spec: OpenAPISpec) => OpenAPISpec;
+  modifySpec?: (spec: OpenAPISpec) => Promise<OpenAPISpec> | OpenAPISpec;
   redocOptions: any;
 }
 
@@ -94,7 +94,7 @@ const loaderFunction: LoaderDefinitionFunction<LoaderOptions> = function(content
   loadAndBundleSpec(resolve(this.resourcePath)).then(async spec => {
     try {
       if (options.modifySpec) {
-        spec = options.modifySpec(spec);
+        spec = await options.modifySpec(spec);
       }
       const pageHTML = await getPageHTML(spec, { });
 
